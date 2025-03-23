@@ -53,6 +53,17 @@ final_df = combined_df.groupby("title").agg({
     "xBox": lambda x: "Yes" if "Yes" in x.values else ""
 }).reset_index()
 
+
+# Filter out gooner games
+inappropriate_keywords = ["hentai", "furry", "porn", "sex", "nude", "naked", "erotic", "adult", "sexy", "nudity",
+                          "sexual", "lewd", "ecchi", "harem", "yuri", "yaoi", "loli", "shota", "feet", "foot", "toe",
+                          "underwear", "panties", "bra", "panty", "panties", "thong", "lingerie", "bikini", "swimsuit", "futanari"]
+
+final_df = final_df[~final_df["title"].str.lower().str.contains('|'.join(inappropriate_keywords), na=False)]
+
+# Keep only games that support English
+final_df = final_df[final_df["supported_languages"].str.contains("English", case=False, na=False)]
+
 # DEBUG: Check PS is filled
 print("Final dataframe sample:")
 print(final_df.head())
