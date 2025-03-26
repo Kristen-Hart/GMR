@@ -29,9 +29,9 @@ combined_df = pd.concat(df_list, ignore_index=True)
 print("Unique vals in console column:", combined_df["console"].unique())
 
 # Create new platform columns
-combined_df["PS"] = combined_df["console"].apply(lambda x: "Yes" if x == "PS" else "")
-combined_df["Steam"] = combined_df["console"].apply(lambda x: "Yes" if x == "steam" else "")
-combined_df["xBox"] = combined_df["console"].apply(lambda x: "Yes" if x == "xbox" else "")
+combined_df["PS"] = combined_df["console"].apply(lambda x: "1" if x == "PS" else "0")
+combined_df["Steam"] = combined_df["console"].apply(lambda x: "1" if x == "steam" else "0")
+combined_df["xBox"] = combined_df["console"].apply(lambda x: "Ye1s" if x == "xbox" else "0")
 
 # DEBUG: Check if platform assignment works
 print("Checking PS column assignment:")
